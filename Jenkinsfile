@@ -1,10 +1,17 @@
 pipeline{
     agent any
     stages{
-        stage ("build")
+        stage ("code checkout")
         {
             steps{
-                echo 'build'
+                checkout scm
+            }
+        
+        }
+        stage ('npm install')
+        {
+            steps{
+                bat "npm install"
             }
         }
     }
