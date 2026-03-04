@@ -20,11 +20,12 @@ pipeline{
                 bat "npm run build"
             }
         }
-        stage("Test") {
+        stage("Test")
+        {
             steps {
                 bat "npm test"
-           }
-       }
+            }
+        }
     }
      
 }
