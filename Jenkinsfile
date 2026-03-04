@@ -26,10 +26,9 @@ pipeline{
                 bat "npm test  -- --passWithNoTests"
             }
         }
-        stage("Docker Build")
-        {
-             steps {
-                 bat "docker build -t todo-app ."
+        stage('Security Scan') {
+            steps {
+                 bat 'npm audit --audit-level=high'
             }
         }
     }
