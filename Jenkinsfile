@@ -29,7 +29,7 @@ pipeline{
         stage("Docker Build")
         {
              steps {
-                 bat "docker build -t todo-app"
+                 bat "docker build -t todo-app ."
             }
         }
     }
