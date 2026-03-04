@@ -14,6 +14,11 @@ pipeline{
                 bat "npm install"
             }
         }
+        stage('Security Scan') {
+             steps {
+                 bat 'npm audit --audit-level=high'
+             }
+        }
         stage ("build")
         {
             steps{
@@ -26,11 +31,7 @@ pipeline{
                 bat "npm test  -- --passWithNoTests"
             }
         }
-        stage('Security Scan') {
-            steps {
-                 bat 'npm audit --audit-level=high'
-            }
-        }
+    
     }
      
 }
