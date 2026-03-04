@@ -26,6 +26,12 @@ pipeline{
                 bat "npm test  -- --passWithNoTests"
             }
         }
+        stage("Docker Build")
+        {
+             steps {
+                 bat "docker build -t todo-app"
+            }
+        }
     }
      
 }
