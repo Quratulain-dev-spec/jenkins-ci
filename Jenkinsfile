@@ -14,6 +14,19 @@ pipeline{
                 bat "npm install"
             }
         }
+        stage ("build")
+        {
+            steps{
+                bat "npm run build"
+            }
+        }
+        stage ("Test")
+        {
+            steps{
+                bat "npm test"
+            }
+
+        }
     }
      
 }
