@@ -27,7 +27,7 @@ pipeline {
         }
         stage('Docker Build') {
             steps {
-                    bat 'docker build -t my-nodejs-app:latest .'
+                    bat 'docker build -t my-nodejs-app:latest ./src'
                 }
             }
         }
