@@ -21,20 +21,25 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
-                sh 'npm install'
+                bat 'npm install'
+            }
+        }
+        stage('Build') {
+            steps{
+                bat 'npm run build'
             }
         }
 
         stage('Unit Test + Coverage') {
             steps {
-                    sh 'npm test -- --coverage --watchAll=false'
+                    bat 'npm test -- --coverage --watchAll=false'
             }
         }
 
         stage('SonarQube Analysis') {
             steps {
                
-                    sh '''
+                    bat '''
                     ${SONAR_SCANNER_HOME}/bin/sonar-scanner \
                     -Dsonar.projectKey=todo-app \
                     -Dsonar.sources=src \
