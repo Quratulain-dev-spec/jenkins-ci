@@ -26,6 +26,19 @@ pipeline {
                     bat 'docker build -t anniesaeed/my-nodejs-app:latest .'
                 }
             }
+            stage ('Trivy') {
+                steps {
+                    bat '''
+                    trivy.exe image ^
+                    --severity CRITICAL ^
+                    --exit-code 1 ^
+                    --format json ^
+                    -o frontend-trivy-report.json ^
+                    --timeout 30m ^
+                    anniesaeed/my-nodejs-app:latest
+                    '''
+                }
+            }
             stage('Docker Login') {
             steps {
                 withCredentials([usernamePassword(
