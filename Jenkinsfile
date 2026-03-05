@@ -14,6 +14,11 @@ pipeline{
                 bat "npm install"
             }
         }
+        stage("Security Scan") {
+            steps {
+                bat "npm audit --audit-level=moderate"
+            }
+        }
         stage ("build")
         {
             steps{
@@ -27,6 +32,13 @@ pipeline{
             }
 
         }
+        stage('Code Coverage') 
+        {
+            steps {
+                 bat 'npm test -- --coverage'
+            }
+        }
+        
     }
      
 }
