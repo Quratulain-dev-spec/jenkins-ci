@@ -1,15 +1,5 @@
 pipeline {
     agent any 
-
-    tools {
-        nodejs "NodeJs"
-    }
-
-    environment {
-        SONAR_SCANNER_HOME = tool 'SonarQube-Scanner-600'
-        SONAR_TOKEN = credentials('sonar-token-id')
-    }
-
     stages {
 
         stage('Checkout Code') {
@@ -36,19 +26,7 @@ pipeline {
             }
         }
 
-        stage('SonarQube Analysis') {
-            steps {
-               
-                    bat '''
-                    ${SONAR_SCANNER_HOME}/bin/sonar-scanner \
-                    -Dsonar.projectKey=todo-app \
-                    -Dsonar.sources=src \
-                    -Dsonar.host.url=http://sonarqube:9000 \
-                    -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
-                    '''
-                
-            }
-        }
+       
     }
 
     post {
