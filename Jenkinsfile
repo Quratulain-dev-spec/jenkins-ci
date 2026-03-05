@@ -16,7 +16,7 @@ pipeline{
         }
         stage('Security Scan') {
              steps {
-                 bat 'npm audit --audit-level=high || echo "Security vulnerabilities found, check manually"'
+                 bat 'npm audit --audit-level=moderate || echo "Security vulnerabilities found, check manually"'
              }
         }
         stage ('build')
