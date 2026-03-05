@@ -14,11 +14,7 @@ pipeline {
                 bat 'npm install'
             }
         }
-        stage('Build') {
-            steps{
-                bat 'npm run build'
-            }
-        }
+        
 
         stage('Unit Test + Coverage') {
             steps {
@@ -27,7 +23,7 @@ pipeline {
         }
         stage('Docker Build') {
             steps {
-                    bat 'docker build -t my-nodejs-app:latest ./src'
+                    bat 'docker build -t my-nodejs-app:latest .'
                 }
             }
         }
