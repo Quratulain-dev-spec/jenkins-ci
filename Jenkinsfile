@@ -23,7 +23,7 @@ pipeline {
         }
         stage('Docker Build') {
             steps {
-                    bat 'docker build -t my-nodejs-app:latest ./src'
+                    bat 'docker build -t anniesaeed/my-nodejs-app:latest .'
                 }
             }
             stage('Docker Login') {
