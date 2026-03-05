@@ -14,11 +14,7 @@ pipeline {
                 bat 'npm install'
             }
         }
-        stage('Build') {
-            steps{
-                bat 'npm run build'
-            }
-        }
+        
 
         stage('Unit Test + Coverage') {
             steps {
@@ -27,26 +23,10 @@ pipeline {
         }
         stage('Docker Build') {
             steps {
-                    bat 'docker build -t anniesaeed/my-nodejs-app:latest .'
-                }
-            }
-           stage('Docker Login') {
-            steps {
-                withCredentials([usernamePassword(
-                    credentialsId: 'dockerHub_creds',
-                    usernameVariable: 'DOCKER_USER',
-                    passwordVariable: 'DOCKER_PASS'
-                )]) {
-                    bat 'docker login -u %DOCKER_USER% -p %DOCKER_PASS%'
+                    bat 'docker build -t my-nodejs-app:latest ./src'
                 }
             }
         }
-        stage('Push Images to DockerHub') {
-            steps {
-                bat 'docker push anniesaeed/my-nodejs-app:latest'
-            }
-        }
-    }
     
     post {
         always {
