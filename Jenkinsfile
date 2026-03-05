@@ -1,7 +1,7 @@
 pipeline {
     agent any 
-    stages {
 
+    stages {
         stage('Checkout Code') {
             steps {
                 checkout scm
@@ -25,7 +25,10 @@ pipeline {
                     bat 'npm test -- --coverage --watchAll=false --passWithNoTests'
             }
         }
-
+        stage('Docker Build') {
+            steps {
+                script {
+                    bat 'docker build -t my-nodejs-app:latest .'
        
     }
 
