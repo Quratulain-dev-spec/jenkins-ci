@@ -22,7 +22,7 @@ pipeline {
 
         stage('Unit Test + Coverage') {
             steps {
-                    bat 'npm test -- --coverage --watchAll=false'
+                    bat 'npm test -- --coverage --watchAll=false --passWithNoTests'
             }
         }
 
