@@ -27,10 +27,26 @@ pipeline {
         }
         stage('Docker Build') {
             steps {
-                    bat 'docker build -t my-nodejs-app:latest ./src'
+                    bat 'docker build -t anniesaeed/my-nodejs-app:latest .'
+                }
+            }
+           stage('Docker Login') {
+            steps {
+                withCredentials([usernamePassword(
+                    credentialsId: 'dockerHub_creds',
+                    usernameVariable: 'DOCKER_USER',
+                    passwordVariable: 'DOCKER_PASS'
+                )]) {
+                    bat 'docker login -u %DOCKER_USER% -p %DOCKER_PASS%'
                 }
             }
         }
+        stage('Push Images to DockerHub') {
+            steps {
+                bat 'docker push anniesaeed/my-nodejs-app:latest'
+            }
+        }
+    }
     
     post {
         always {
